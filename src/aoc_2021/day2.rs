@@ -13,10 +13,10 @@ fn part1() {
     let mut pos = 0;
 
     for line in input {
-        let mut command = line.split(" ");
+        let mut command = line.split(' ');
 
         let direction = command.next().expect("unable to get direction");
-        if direction == "" {
+        if direction.is_empty() {
             continue;
         }
         let units = command.next().expect("unable to get units");
@@ -39,10 +39,10 @@ fn part2() {
     let mut aim = 0;
 
     for line in input {
-        let mut command = line.split(" ");
+        let mut command = line.split(' ');
 
         let direction = command.next().expect("unable to get direction");
-        if direction == "" {
+        if direction.is_empty() {
             continue;
         }
         let units = command.next().expect("unable to get units");
@@ -53,7 +53,7 @@ fn part2() {
             aim += value;
         } else {
             pos += value;
-            depth = depth + (aim * value);
+            depth += aim * value;
         }
     }
     println!("Part 1: {}", depth * pos);
@@ -66,5 +66,5 @@ fn get_inputs() -> Vec<String> {
         .read_to_string(&mut input)
         .expect("unable to parse file to string");
 
-    input.split("\n").map(|x| String::from(x)).collect()
+    input.split('\n').map(String::from).collect()
 }

@@ -17,13 +17,13 @@ pub fn get_inputs(year: u32, day: u32) -> Vec<String> {
             resp
         }
     };
-    input.split("\n").map(|s| s.to_string()).collect()
+    input.split('\n').map(String::from).collect()
 }
 
 pub fn get_input_from_site(year: u32, day: u32) -> Result<String, Box<dyn Error>> {
     let session_cookie = std::fs::read_to_string(".session")?;
     let cookie = format!("session={};", session_cookie);
-    let url = format!("https://adventofcode.com/{}/day/{}/input", year, day).to_string();
+    let url = format!("https://adventofcode.com/{}/day/{}/input", year, day);
     let jar = Jar::default();
 
     jar.add_cookie_str(&cookie, &url.parse::<Url>()?);
@@ -34,12 +34,11 @@ pub fn get_input_from_site(year: u32, day: u32) -> Result<String, Box<dyn Error>
         .user_agent("github.com/kendallm/aoc-rust by mastodon.social/@kendallm")
         .build()?;
 
-    println!("Sending request");
     let res = client.get(url)
         .send()?;
     if !res.status().is_success() {
-        return Err(res.text()?)?
+        return Err(std::fmt::Error)?
     }
-    let body = res.text()?;
-    Ok(body)
+    let text = res.text()?;
+    Ok(text)
 }

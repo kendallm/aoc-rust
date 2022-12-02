@@ -7,15 +7,15 @@ pub fn run() {
     let mut count = 0;
     let mut calories: vec::Vec<i32> = vec::Vec::new();
     for line in input {
-        if line == "" {
+        if line.is_empty() {
             calories.push(count);
             count = 0;
             continue;
         }
-        println!("{line}");
         let c: i32 = line.parse().expect("unable to parse i32 from line");
         count += c;
     }
+
     calories.sort_by(|a, b| b.cmp(a));
 
     println!(

@@ -10,7 +10,7 @@ fn get_input() -> Vec<i32> {
         .read_to_string(&mut puzzle_input)
         .expect("error reading file");
 
-    let input_lines = puzzle_input.split("\n");
+    let input_lines = puzzle_input.split('\n');
 
     let mut measurements: Vec<i32> = Vec::new();
     for number in input_lines {
@@ -20,7 +20,7 @@ fn get_input() -> Vec<i32> {
         };
         measurements.push(number);
     }
-    return measurements;
+    measurements
 }
 
 pub fn run() {
@@ -29,7 +29,7 @@ pub fn run() {
     part2(&input);
 }
 
-fn part1(input: &Vec<i32>) {
+fn part1(input: &[i32]) {
     let mut p1_count = 0;
     let mut p1_last = input.first().expect("item");
 
@@ -42,7 +42,7 @@ fn part1(input: &Vec<i32>) {
     println!("Part 1: {}", p1_count);
 }
 
-fn part2(input: &Vec<i32>) {
+fn part2(input: &[i32]) {
     let mut acc = 0;
     let mut seen = 0;
     let mut last: i32;
