@@ -3,13 +3,13 @@ use std::collections::HashMap;
 
 pub fn run() {
     let input = get_inputs(2022, 2);
-    
+
     let mut scores = HashMap::new();
 
     scores.insert("A X".to_string(), (4, 3));
     scores.insert("A Y".to_string(), (8, 4));
     scores.insert("A Z".to_string(), (3, 8));
-    
+
     scores.insert("B X".to_string(), (1, 1));
     scores.insert("B Y".to_string(), (5, 5));
     scores.insert("B Z".to_string(), (9, 9));
@@ -22,7 +22,7 @@ pub fn run() {
     let mut part2 = 0;
 
     for line in input {
-        let (a, b) = scores.get(&line).unwrap_or(&(0,0));
+        let (a, b) = scores.get(&line).unwrap_or(&(0, 0));
         part1 += a;
         part2 += b;
     }
