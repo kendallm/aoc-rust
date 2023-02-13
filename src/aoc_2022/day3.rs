@@ -60,20 +60,19 @@ impl Rucksack {
 /// use aoc_rust::aoc_2022::day3::part1;
 /// use aoc_rust::aoc_2022::day3::Rucksack;
 ///
-/// let lines = String::from("vJrwpWtwJgWrhcsFMMfFFhFp
-/// jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-/// PmmdzqPrVvPwwTWBwg
-/// wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-/// ttgJtRGJQctTZtZT
-/// CrZsJsPPZsGzwwsLwLmpwMDw");
+/// let lines = vec![
+///     "vJrwpWtwJgWrhcsFMMfFFhFp",
+///     "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+///     "PmmdzqPrVvPwwTWBwg",
+///     "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+///     "ttgJtRGJQctTZtZT",
+///     "CrZsJsPPZsGzwwsLwLmpwMDw"
+/// ];
 ///
 /// let mut sacks = Vec::new();
-///    for line in lines.split("\n") {
-///         if line.is_empty() {
-///             continue;
-///         }
-///         sacks.push(Rucksack::new(line.to_string()))
-///     }
+/// for line in lines {
+///     sacks.push(Rucksack::new(line.to_string()))
+/// }
 /// assert_eq!(157, part1(&sacks))
 /// ```
 ///
@@ -90,27 +89,26 @@ pub fn part1(sacks: &Vec<Rucksack>) -> u32 {
 /// use aoc_rust::aoc_2022::day3::part2;
 /// use aoc_rust::aoc_2022::day3::Rucksack;
 ///
-/// let lines = String::from("vJrwpWtwJgWrhcsFMMfFFhFp
-/// jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-/// PmmdzqPrVvPwwTWBwg
-/// wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-/// ttgJtRGJQctTZtZT
-/// CrZsJsPPZsGzwwsLwLmpwMDw");
+/// let lines = vec![
+///     "vJrwpWtwJgWrhcsFMMfFFhFp",
+///     "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+///     "PmmdzqPrVvPwwTWBwg",
+///     "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+///     "ttgJtRGJQctTZtZT",
+///     "CrZsJsPPZsGzwwsLwLmpwMDw"
+/// ];
 ///
 /// let mut sacks = Vec::new();
-///    for line in lines.split("\n") {
-///         if line.is_empty() {
-///             continue;
-///         }
-///         sacks.push(Rucksack::new(line.to_string()))
-///     }
+/// for line in lines {
+///     sacks.push(Rucksack::new(line.to_string()))
+/// }
 /// assert_eq!(70, part2(&sacks))
 /// ```
 ///
 pub fn part2(sacks: &Vec<Rucksack>) -> u32 {
     let mut total = 0;
     sacks.chunks(3).for_each(|chunk| {
-        let items:Vec<HashSet<&Item>> = vec![
+        let items: Vec<HashSet<&Item>> = vec![
             HashSet::from_iter(chunk[0].all_items.iter()),
             HashSet::from_iter(chunk[1].all_items.iter()),
             HashSet::from_iter(chunk[2].all_items.iter()),
