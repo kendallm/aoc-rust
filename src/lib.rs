@@ -9,8 +9,9 @@ pub fn get_inputs(year: u32, day: u32) -> Vec<String> {
     let path = format!("src/aoc_{}/day_{}.txt", year, day);
     let input = match std::fs::read_to_string(&path) {
         Ok(s) => s,
-        Err(_) => {
-            println!("Downloading input file");
+        Err(e) => {
+            println!("unable to read {} from local disk: {}", path, e);
+            println!("downloading input file");
             let resp = get_input_from_site(year, day).expect("unable to get inputs");
             std::fs::write(&path, &resp).expect("unable to save file");
             resp
@@ -30,7 +31,7 @@ pub fn get_input_from_site(year: u32, day: u32) -> Result<String, Box<dyn Error>
     let client = Client::builder()
         .cookie_store(true)
         .cookie_provider(std::sync::Arc::new(jar))
-        .user_agent("github.com/kendallm/aoc-rust by mastodon.social/@kendallm")
+        .user_agent("github.com/kendallm/aoc-rust by @kendallm@mastodon.social")
         .build()?;
 
     let res = client.get(url).send()?;
