@@ -1,3 +1,5 @@
+extern crate core;
+
 use reqwest::blocking::Client;
 use reqwest::{cookie::Jar, Url};
 use std::error::Error;
@@ -17,7 +19,7 @@ pub fn get_inputs(year: u32, day: u32) -> Vec<String> {
             resp
         }
     };
-    input.split('\n').map(String::from).collect()
+    input.trim().split('\n').map(String::from).collect()
 }
 
 pub fn get_input_from_site(year: u32, day: u32) -> Result<String, Box<dyn Error>> {
